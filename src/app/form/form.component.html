@@ -1,0 +1,51 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="userData">
+    <div class="form-group">
+      <label for="document">document</label>
+      <input type="text"
+             class="form-control"
+             id="document"
+             formControlName="document">
+    </div>
+
+    <div *ngIf="!myForm.controls.userData.controls.document.valid">
+      Invalid Document
+    </div>
+
+    <p>Document Status: {{ myForm.controls.userData.controls.document.status | json }}</p>
+    <p>Document Pristine: {{ myForm.controls.userData.controls.document.pristine | json }}</p>
+
+
+    <br>
+    <br>
+    <br>
+
+    <div class="form-group">
+      <label for="documentMask">document with mask</label>
+      <input type="text"
+             class="form-control"
+             id="documentMask"
+             formControlName="documentMask"
+             mask="999.999.999-99">
+    </div>
+
+    <div *ngIf="!myForm.controls.userData.controls.documentMask.valid">
+      Invalid Document With Mask
+    </div>
+
+    <p>Document with mask Status: {{ myForm.controls.userData.controls.documentMask.status | json }}</p>
+    <p>Document with mask Pristine: {{ myForm.controls.userData.controls.documentMask.pristine | json }}</p>
+    
+    <br>
+    <br>
+    <br>
+
+    
+  <p>Form value: {{ myForm.value | json }}</p>
+  <p>Form Status: {{ myForm.status | json }}</p>
+  <p>Form Pristine: {{ myForm.pristine | json }}</p>
+  
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Submit</button>
+</form>
